@@ -1,0 +1,8 @@
+Using two libraries:
+
+Conductor for selenium webdriver framework
+Jaunt- to scrap websites: Note have to redownload every month because the license expires
+
+Using Maven to manage these dependcies. It is written in the POM file 
+
+I had trouble creating the java class that maps to the JSON that hawttrends.appspot.com/api/terms/ produced. I used the tool http://www.jsonschema2pojo.org/ to auto create the java object.
