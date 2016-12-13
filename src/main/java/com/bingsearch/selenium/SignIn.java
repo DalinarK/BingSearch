@@ -18,8 +18,9 @@ public class SignIn {
 
 //    password text entry
     public static final String LOC_TXT_PASSWORD ="input#i0118";
+
 //    sign in button
-    public static final String LOC_BTN_SUBMITLOGIN = "input#idSIButton9";
+    public static final String LOC_BTN_SUBMITLOGIN = "input[id='idSIButton9']";
 
 //    Display name of signed in person
     public static final String LOC_LNK_USERSIGNEDIN = "span#id_n";
