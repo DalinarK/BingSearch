@@ -1,4 +1,4 @@
-package googleTopSearches;
+package com.bingsearch.googleTopSearches;
 
 import com.google.gson.Gson;
 
@@ -12,6 +12,7 @@ import java.net.URL;
 public class topSearches {
 
     public Searches parseGoogle () {
+
         String strTemp = "";
         Searches searches = new Searches();
         Gson gson = new Gson();
@@ -26,7 +27,6 @@ public class topSearches {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
 //        System.out.println(gson.toJson(searches, Searches.class));
         return searches;
     }
