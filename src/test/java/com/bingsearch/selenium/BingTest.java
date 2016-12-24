@@ -1,6 +1,7 @@
 package com.bingsearch.selenium;
 
 import com.bingsearch.googleTopSearches.Searches;
+import com.bingsearch.googleTopSearches.Sleeper;
 import com.bingsearch.googleTopSearches.topSearches;
 import com.google.gson.Gson;
 import io.ddavison.conductor.Browser;
@@ -29,13 +30,18 @@ public class BingTest extends Locomotive {
         click(SignIn.LOC_LNK_CONNECT);
         setText(SignIn.LOC_TXT_EMAILINPUT, "gophertest@outlook.com");
         click(SignIn.LOC_BTN_SUBMITLOGIN);
+
+//      Checks to make sure the password screen is available first before entering password
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("idSIButton9")));
+
         setText(SignIn.LOC_TXT_PASSWORD, "testpassword1111");
         click(SignIn.LOC_BTN_SUBMITLOGIN);
 
 //      Make sure element is loaded before checking if user is signed in. Note to self - convert from
 //      basic selenium to Conductor syntax when have time.
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("id_n")));
+        wait = new WebDriverWait(driver, 10);
+        element = wait.until(ExpectedConditions.elementToBeClickable(By.id("id_n")));
 
 //      Make sure user is signed in
         validateText(SignIn.LOC_LNK_USERSIGNEDIN, "Dennis");
@@ -46,9 +52,13 @@ public class BingTest extends Locomotive {
         topSearches topsearches = new topSearches();
         Searches returnedResults = topsearches.parseGoogle();
 
+//      Load sleeper class
+        Sleeper sleepRand = new Sleeper();
+
 //      Search for items
         Iterator iter = returnedResults._5.iterator();
         while(iter.hasNext()){
+            sleepRand.randomSleep();
             String searchTerm = (String) iter.next();
             setText(SearchBing.LOC_TXT_SEARCHMAIN, searchTerm);
             click(SearchBing.LOC_BTN_SEARCHSUBMIT);
@@ -60,8 +70,10 @@ public class BingTest extends Locomotive {
             }
         }
 
+
         iter = returnedResults._3.iterator();
         while(iter.hasNext()){
+            sleepRand.randomSleep();
             String searchTerm = (String) iter.next();
             setText(SearchBing.LOC_TXT_SEARCHMAIN, searchTerm);
             click(SearchBing.LOC_BTN_SEARCHSUBMIT);
