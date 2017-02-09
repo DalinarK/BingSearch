@@ -32,6 +32,7 @@ public class BingTest extends Locomotive {
         click(SignIn.LOC_BTN_SUBMITLOGIN);
 
 //      Checks to make sure the password screen is available first before entering password
+//      Implicit waits did not work for this site. Using explicit wait because it is a more well defined behavior rather than implicit.
         WebDriverWait wait = new WebDriverWait(driver, 10);
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id("idSIButton9")));
 
